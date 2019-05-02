@@ -1,0 +1,57 @@
+body
+{
+  width: 90%;
+  margin:auto;
+}
+
+#titre_principal
+{
+  background-image: url('images/ChugachMountains.jpg');
+  height : 400px;
+  background-size: cover;
+  font-size : 30px;
+  margin-top: 50px;
+  
+  
+}
+#titre_roman
+{
+  text-shadow: 5px 5px 5px black;
+  font-size : 70px;
+}
+#section
+{
+  margin-top :70px;
+  height : 600px;
+}
+
+#bouton_connexion
+{
+  margin-top: 20px;
+  margin-left : 90%;
+}
+form
+{
+  margin-top : 200px;
+  width: 60%;
+  margin:auto;
+}
+
+
+#editeur, #resultat { 
+  width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  padding: 5px;
+  overflow: auto;
+}
+
+#chapter_flex
+{
+  width : 10%;
+}
+
+#title_chapter
+{
+  font-size: 50px;
+}
