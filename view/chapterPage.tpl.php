@@ -18,7 +18,7 @@
                     <p> <?= $message->getName() ?></p>
                     <p> <?= $message->getComment()?></p>
                     <p> le <?= $message->getDate()?></p>
-                    <a href="index.php?action=messageReport&amp;id=<?= $message->getId()?>">Signaler à l'admin</a>
+                    <a href="index.php?action=messageReport&amp;id=<?= $message->getId()?>&amp;chapter=<?= $message->getChapter_message()?>">Signaler à l'admin</a>
                 </div>
                 
             <?php }?>

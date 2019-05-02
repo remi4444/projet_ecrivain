@@ -33,13 +33,14 @@ class Controller
 		if ($affectedLines == false){
 			die("Impossible d'ajouter le commentaire");
         }
+        $this->chapterPage($chapter_number);
     }
 
-    public function MessageReporting($id)
+    public function MessageReporting($id, $chapter)
     {
         $messageReporting = new MessageManager();
         $reportUpdate = $messageReporting->updateReportMessage($id);
-        
+        $this->chapterPage($chapter);
     }
     
     

@@ -30,7 +30,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'messageReport')
     {
         $controller = new Controller();
-        $controller->MessageReporting($_GET['id']);
+        $controller->MessageReporting($_GET['id'], $_GET['chapter']);
     }
 
     elseif($_GET['action']== 'addMessage')
