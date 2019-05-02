@@ -1,0 +1,146 @@
+
+
+body
+{
+  width: 90%;
+  margin:auto;
+}
+
+#titre_principal
+{
+  background-image: url('../images/ChugachMountains.jpg');
+  height : 500px;
+  background-size: cover;
+  font-size : 30px;
+  margin-top: 50px;
+  
+  
+}
+#titre_roman
+{
+  text-shadow: 5px 5px 5px black;
+  font-size : 70px;
+}
+#section
+{
+  margin-top :70px;
+  height : 1500px;
+  background-color: rgb(53, 58, 64);
+}
+
+#bouton_connexion
+{
+  margin-top: 20px;
+  margin-left : 90%;
+}
+form
+{
+  margin-top : 200px;
+  width: 60%;
+  margin:auto;
+}
+
+
+#editeur, #resultat { 
+  width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  padding: 5px;
+  overflow: auto;
+}
+
+
+
+
+
+#title
+{
+  font-size: 40px;
+  border-radius: 50%;
+  font-family: Fantasy;
+  width: 50%;
+  color :white;
+  text-shadow : 2px 2px 2px black;
+  
+}
+
+#flex_chapter
+{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
+#chapter_size
+{
+  
+  width: 45%;
+  margin-top: 40px;
+  border-radius: 50px;
+  background-color: rgb(200, 177, 180);
+  
+}
+
+#chapter_size:hover 
+{
+  background-color: rgb(214, 104, 117);
+}
+
+#font_family_chapter
+{
+  font-family : cursive;
+  font-size: 50px;
+}
+
+h3
+{
+  color:white;
+  font-size: 40px;
+  text-shadow : 2px 2px 2px black;
+}
+
+#section_page_chapter
+{
+  background-color: white;
+  font-size: 30px;
+  font-family: cursive;
+  text-align: justify;
+  padding: 5%;
+}
+
+#title_chapter
+{
+  font-size: 70px;
+}
+
+#name_forum
+{
+  color:red;
+  font-size:20px;
+}
+
+#comment_forum
+{
+  font-size : 15px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+#message_forum
+{
+  margin-top: 50px;
+  width: 40%;
+  height: 200px;
+  margin:auto;
+  margin-bottom: 20px;
+  padding-top: 0px;
+}
+
+#forum
+{
+  margin-top : 30px;
+  
+}
+
+#form_forum
+{
+  margin-top:50px;
+}

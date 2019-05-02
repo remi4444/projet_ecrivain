@@ -1,4 +1,4 @@
-function commande(nom, argument){
+/*function commande(nom, argument){
     if (typeof argument === 'undefined') {
         argument = '';
     }
@@ -6,4 +6,4 @@ function commande(nom, argument){
 }
 function resultat(){
 	document.getElementById("resultat").value = document.getElementById("editeur").innerHTML;
-}
+}*/
