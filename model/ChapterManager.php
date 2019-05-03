@@ -46,7 +46,8 @@ class ChapterManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$req = $db->query('SELECT COUNT(*) AS nbChapter FROM chapter');
-		return $req;
+		$data = $req->fetch();
+		return $data;
 	}
 
 	public function update($chapter_number, $title, $textParagraph, $id)

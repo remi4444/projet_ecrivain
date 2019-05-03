@@ -7,13 +7,15 @@
                 <h2 class="text-danger text-center">chapitre <?= $post->getChapterNumber() ?></h2>
                 <p id="title_chapter" class="text-info text-center"><?= $post->getTitle()?></p>
                 <p id="chapter_paragraph"><?= $post->getParagraph()?></p>
+                <a  href="index.php?action=nextChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre suivant</a>
+            <?php }?>  
     </section>
 
     <section id="forum">
                 <h2 class="text-light text-center">Forum du chapitre</h2>
                 
-                <?php }
                 
+               <?php 
                 foreach($messages as $message)
                 {?> 
                 

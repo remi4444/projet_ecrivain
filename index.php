@@ -38,6 +38,11 @@ if(isset($_GET['action'])){
         $controller = new Controller();
         $controller->addMessage($_POST['author'],$_POST['message'], $_GET['chapter_number']);
     }
+    elseif($_GET['action']== 'nextChapter')
+    {
+        $controller = new Controller();
+        $controller->nextChapter($_GET['chapter']);
+    }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';
     }
