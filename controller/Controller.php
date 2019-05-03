@@ -40,23 +40,19 @@ class Controller
     {
         $messageReporting = new MessageManager();
         $reportUpdate = $messageReporting->updateReportMessage($id);
-        
+        $this->chapterPage($chapter);
     }
     public function nextChapter($chapter)
     {
         $count = new ChapterManager;
         $countChapter = $count->countChapter();
         $countNbChapter = $countChapter['nbChapter'];
-       
         $nextChapter =  $chapter+1;
         if($nextChapter > $countNbChapter)
         {
             $nextChapter = 1;
         }
         $this->chapterPage($nextChapter);
-       
-       
-       
     }
     
 }

@@ -113,13 +113,13 @@ h3
   font-size: 70px;
 }
 
-#name_forum
+.name_forum
 {
   color:red;
   font-size:20px;
 }
 
-#comment_forum
+.comment_forum
 {
   font-size : 15px;
   font-family:Georgia, 'Times New Roman', Times, serif;
@@ -143,4 +143,53 @@ h3
 #form_forum
 {
   margin-top:50px;
+}
+
+#nb_chapter_modify
+{
+  width:50%;
+  margin:auto;
+  font-size: 30px;
+  font-family: cursive;
+}
+
+#div_update_chapter
+{
+  padding-top : 0px;
+}
+
+#button_update_delete
+{
+  margin-top: 50px;
+}
+.title_admin_info
+{
+  width : 50%;
+  margin:auto;
+  height : 50px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  font-size : 35px;
+}
+
+.size_form_admin
+{
+  width : 5%;
+  text-align: center;
+}
+
+.size_form_admin_title
+{
+  width : 100%;
+  margin:auto;
+}
+form
+{
+  line-height: 50px;
+  font-size : 25px;
+}
+
+.size_textarea_form
+{
+  height : 500px;
 }

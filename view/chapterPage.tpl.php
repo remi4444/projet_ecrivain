@@ -20,8 +20,8 @@
                 {?> 
                 
                 <div class="jumbotron" id="message_forum">
-                    <p id="name_forum"> <?= $message->getName() ?> : </p>
-                    <p id="comment_forum"> <?= $message->getComment()?></p>
+                    <p class="name_forum"> <?= $message->getName() ?> : </p>
+                    <p class="comment_forum"> <?= $message->getComment()?></p>
                     <p class="text-right "> le <?= $message->getDate()?></p>
                     <a href="index.php?action=messageReport&amp;id=<?= $message->getId()?>&amp;chapter=<?= $message->getChapter_message()?>">Signaler à l'admin</a>
                 </div>
