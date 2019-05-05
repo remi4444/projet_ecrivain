@@ -18,10 +18,12 @@ class Controller
     {
         $listChapterByNumber = new ChapterManager();
         $listMessage = new MessageManager();
+        $countChapter = $listChapterByNumber->countChapter();
+        $countNbChapter = $countChapter['nbChapter'];
         $posts = $listChapterByNumber->getChapterByNumber($chapter_number);
         $messages = $listMessage->getMessage($chapter_number);
         $view = new View(); 
-        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('posts'=>$posts, 'messages'=>$messages));
+        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('posts'=>$posts, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter));
         
         echo $chapterPage;
     }
@@ -49,6 +51,18 @@ class Controller
         $countNbChapter = $countChapter['nbChapter'];
         $nextChapter =  $chapter+1;
         if($nextChapter > $countNbChapter)
+        {
+            $nextChapter = 1;
+        }
+        $this->chapterPage($nextChapter);
+    }
+    public function beforeChapter($chapter)
+    {
+        $count = new ChapterManager;
+        $countChapter = $count->countChapter();
+        $countNbChapter = $countChapter['nbChapter'];
+        $nextChapter =  $chapter-1;
+        if($nextChapter < 0)
         {
             $nextChapter = 1;
         }

@@ -7,8 +7,26 @@
                 <h2 class="text-danger text-center">chapitre <?= $post->getChapterNumber() ?></h2>
                 <p id="title_chapter" class="text-info text-center"><?= $post->getTitle()?></p>
                 <p id="chapter_paragraph"><?= $post->getParagraph()?></p>
-                <a  href="index.php?action=nextChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre suivant</a>
-            <?php }?>  
+                <?php 
+                if($post->getChapterNumber()==1 )
+                {?>                                                  
+                    <a href="index.php?action=nextChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre suivant</a>
+                <?php 
+                } 
+                elseif ($post->getChapterNumber()== $countNbChapter)
+                {?>
+                                                            
+                    <a href="index.php?action=beforeChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre precedent</a>
+                <?php 
+                }
+            
+                else
+                {?>
+                    <a href="index.php?action=beforeChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre precedent</a>
+                    <a href="index.php?action=nextChapter&amp;chapter=<?=$post->getChapterNumber()?>">Chapitre suivant</a>
+                <?php
+                }
+            }?>
     </section>
 
     <section id="forum">

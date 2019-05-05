@@ -43,6 +43,11 @@ if(isset($_GET['action'])){
         $controller = new Controller();
         $controller->nextChapter($_GET['chapter']);
     }
+    elseif($_GET['action']== 'beforeChapter')
+    {
+        $controller = new Controller();
+        $controller->beforeChapter($_GET['chapter']);
+    }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';
     }
