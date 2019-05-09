@@ -36,7 +36,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'searchText')
     {
         $controller= new ControllerAdmin();
-        $controller->searchText($_GET['chapter_page']);
+        $controller->searchText($_GET['id_page']);
     }
     elseif($_GET['action']== 'updateChapter')
     {
@@ -46,7 +46,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'deleteChapter')
     {
         $controller = new ControllerAdmin();
-        $controller->deleteChapter($_GET['chapter_page']);
+        $controller->deleteChapter($_GET['id_page']);
     }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';

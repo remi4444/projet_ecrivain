@@ -1,9 +1,9 @@
-/*function commande(nom, argument){
-    if (typeof argument === 'undefined') {
-        argument = '';
-    }
-    document.execCommand(nom, false, argument);
-}
-function resultat(){
-	document.getElementById("resultat").value = document.getElementById("editeur").innerHTML;
-}*/
+var messageReport = document.getElementById('message_Script_report');
+messageReport.addEventListener("click", function()
+{
+    var alertReport = document.createElement('p');
+    
+    alertReport.id = 'alert_report';
+    alertReport.textContent = 'Le message a bien été signalé';
+    document.getElementById('message_forum').appendChild(alertReport);
+});

@@ -4,20 +4,20 @@
 
 class MessageManager extends Manager
 {
-    public function addMessage($author, $message, $chapter_number)
+    public function addMessage($author, $message, $id)
     {
         $db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO message(name, comment, chapter_message, report, date_creation) VALUES(?,?,?,0,NOW())');
+		$req = $db->prepare('INSERT INTO message(name, comment, id_chapter, report, date_creation) VALUES(?,?,?,0,NOW())');
 
-		$affectedLines = $req->execute(array($author, $message, $chapter_number));
+		$affectedLines = $req->execute(array($author, $message, $id));
 		return $affectedLines;
     }
 
-    public function getMessage($chapterNumber)
+    public function getMessage($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM message   WHERE chapter_Message = ?');
-        $req->execute(array($chapterNumber));
+        $req = $db->prepare('SELECT * FROM message   WHERE id_chapter = ?');
+        $req->execute(array($id));
 		$tabResult = array();
 		while($data = $req->fetch()){
 			$tabResult[] = new MessageObject($data);

@@ -20,7 +20,7 @@
         <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
-    <a href="../index.php">Retour à la page principale</a>
     <?= $content ?>
+    
 </body>
 </html>

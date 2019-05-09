@@ -20,33 +20,33 @@ spl_autoload_register('chargerClasseModel');
 
 if(isset($_GET['action'])){
 	
-    if($_GET['action']== 'chapterByNumber')
+    if($_GET['action']== 'chapterById')
     {
         
         $controller = new Controller();
-		$controller->chapterPage($_GET['chapter_number']);
+		$controller->chapterPage($_GET['id']);
     }
 
     elseif($_GET['action']== 'messageReport')
     {
         $controller = new Controller();
-        $controller->MessageReporting($_GET['id'], $_GET['chapter']);
+        $controller->MessageReporting($_GET['id'], $_GET['chapter_id']);
     }
 
     elseif($_GET['action']== 'addMessage')
     {
         $controller = new Controller();
-        $controller->addMessage($_POST['author'],$_POST['message'], $_GET['chapter_number']);
+        $controller->addMessage($_POST['author'],$_POST['message'], $_GET['chapter_id']);
     }
     elseif($_GET['action']== 'nextChapter')
     {
         $controller = new Controller();
-        $controller->nextChapter($_GET['chapter']);
+        $controller->nextChapter($_GET['id']);
     }
     elseif($_GET['action']== 'beforeChapter')
     {
         $controller = new Controller();
-        $controller->beforeChapter($_GET['chapter']);
+        $controller->beforeChapter($_GET['id']);
     }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';

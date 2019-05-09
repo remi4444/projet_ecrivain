@@ -4,6 +4,7 @@ body
 {
   width: 90%;
   margin:auto;
+  
 }
 
 #titre_principal
@@ -24,8 +25,10 @@ body
 #section
 {
   margin-top :70px;
-  height : 1500px;
-  background-color: rgb(53, 58, 64);
+  height : 1000px;
+  background-size: cover;
+  background-image: url('../images/sombre.jpg');
+
 }
 
 #bouton_connexion
@@ -77,13 +80,13 @@ form
   height: 250px;
   margin-top: 40px;
   border-radius: 50px;
-  background-color: rgb(181, 52, 63);
-  
+  background-color: rgb(181, 52, 63, 0.4);
+  position : relative;
 }
 
 #chapter_size:hover 
 {
-  background-color: rgb(255, 0, 21);
+  background-color: rgb(181, 52, 63);
 }
 
 #font_family_chapter
@@ -200,4 +203,165 @@ form
 {
   
   color : white;
+}
+
+#link_page_chapter
+{
+  position : absolute;
+  bottom : 10px;
+}
+
+.link_admin
+{
+  width : 15%;
+}
+
+#margin_admin
+{
+  margin-top: 70px;
+  margin-bottom:70px;
+}
+
+#return_page_principal
+{
+  margin-bottom: 30px;
+  position : fixed;
+  top : 30px;
+}
+
+
+@media screen and (max-width: 1280px)
+{
+    body
+    {
+      width: 100%;
+    }
+    #titre_principal
+    {
+      height : 300px;
+      font-size : 20px;
+      
+    }
+    #titre_roman
+    {
+      font-size : 50px;
+      text-align : left;
+    }
+    #bouton_connexion
+    {
+      margin-top: 20px;
+      margin-left : 35%;
+    }
+    #chapter_size
+    {
+      
+      width: 80%;
+      margin:auto;
+      height: 200px;
+      margin-top: 20px;
+      border-radius: 50px;
+      background-color: rgb(181, 52, 63, 0.4);
+      position : relative;
+    }
+
+    #font_family_chapter
+    {
+      font-family : fantasy;
+      font-size: 20px;
+      color : white;
+      
+    }
+    #link_page_chapter
+    {
+      position : static;
+      bottom : 10px;
+      
+      font-size : 20px;
+    }
+    #title_chapter
+    {
+      font-size: 30px;
+    }
+    #return_page_principal
+    {
+      display : none;
+    }
+    .next_chapter_style
+    {
+      font-size: 25px;
+      width: 30%;
+      
+    }
+    #message_forum
+    {
+      margin-top: 50px;
+      width: 80%;
+      height: 200px;
+      margin:auto;
+      margin-bottom: 20px;
+      padding-top: 10px;
+    }
+    #form_forum
+    {
+      width: 90%;
+    }
+    #form_width
+    {
+      width : 90%;
+    }
+    .form_input_width
+    {
+      width: 90%;
+      
+    }
+    #message_report
+    {
+      height : 150px;
+      height: 25px;
+      font-size: 15px;
+    }
+    #flex_nav
+    {
+      flex-direction: column;
+      
+    }
+    .link_admin
+    {
+      width : 90%;
+      margin:auto;
+      margin-bottom: 10px;
+    }
+    #publish
+    {
+      width : 90%;
+      font-size: 15px;
+      height: 25px;
+    }
+
+    .reponsive_width
+    {
+      width : 100%;
+      font-size: 15px;
+    }
+    .width_case
+    {
+      height: 30px;
+      width: 10%;
+    }
+    #update
+    {
+      width : 90%;
+      font-size: 15px;
+      height: 25px;
+    }
+    #nb_chapter_modify
+    {
+      font-size : 20px;
+      width: 70%;
+    }
+    #bouton_connexion
+    {
+      margin-top: 20px;
+      margin-left : 0%;
+    }
 }

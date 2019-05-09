@@ -8,7 +8,7 @@ class ChapterManager extends Manager
 	public function getChapter()
 	{	
 		$db = $this->dbConnect();
-	    $req = $db->query('SELECT * FROM chapter ORDER BY id DESC ');
+	    $req = $db->query('SELECT * FROM chapter ORDER BY chapter_number');
 		$tabResult = array();
 		while($data = $req->fetch()){
 			$tabResult[] = new ChapterObject($data);
@@ -18,11 +18,11 @@ class ChapterManager extends Manager
 	  
 	}
 
-	public function getChapterByNumber($chapter_number)
+	public function getChapterById($id)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT * FROM chapter WHERE chapter_Number =?');
-		$req->execute(array($chapter_number));
+		$req = $db->prepare('SELECT * FROM chapter WHERE id =?');
+		$req->execute(array($id));
 		$tabResult = array();
 		while($data = $req->fetch()){
 			$tabResult[] = new ChapterObject($data);
@@ -62,11 +62,27 @@ class ChapterManager extends Manager
 		));
 	}
 	
-	public function deleteChapter($chapter)
+	public function deleteChapter($id_chapter)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('DELETE FROM chapter WHERE chapter_number = ?');
-		$req->execute(array($chapter));
+		$req = $db->prepare('DELETE FROM chapter WHERE id = ?');
+		$req->execute(array($id_chapter));
 	}
 
+	public function nextChapter($chapter)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT id FROM chapter WHERE chapter_number > ?');
+		$req->execute(array($chapter));
+		$data = $req->fetch();
+		return $data;
+	}
+	public function beforeChapter($chapter)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT id FROM chapter  WHERE chapter_number < ? ');
+		$req->execute(array($chapter));
+		$data = $req->fetch();
+		return $data;
+	}
 }	

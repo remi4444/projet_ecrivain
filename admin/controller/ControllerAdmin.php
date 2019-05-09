@@ -6,15 +6,9 @@ class ControllerAdmin
 {
     public function adminPage()
     {
-        /*$view = new View();
-        $connexionPage = $view->connexionPage();
-        require('view/ViewAdmin.php');
-        $title= 'adminPage';
-        require('admin/indexAdmin.php');*/
+        
         $searchMessageReport = new MessageManager();
         $reportMessage = $searchMessageReport->getReportsMessages();
-        /*$countChapter = new AdminManager();
-        $count= $countChapter->countChapter();*/
         $searchChapter = new ChapterManager();
         $chapters = $searchChapter->getChapter();
         $viewAdmin = new ViewAdmin;
@@ -35,7 +29,6 @@ class ControllerAdmin
     {
         $removeMessage = new MessageManager();
         $removeMessage->removeMessage($idMessage);
-        
         header('Location: indexAdmin.php');
     }
     public function removeMessageInAdmin($id)
@@ -44,10 +37,10 @@ class ControllerAdmin
         $removeMessageInAdmin->removeMessageInadmin($id);
         header('Location: indexAdmin.php');
     }
-    public function searchText($chapter_number)
+    public function searchText($id_chapter)
     {
         $updateText = new ChapterManager();
-        $chapterElement = $updateText->getChapterByNumber($chapter_number);
+        $chapterElement = $updateText->getChapterById($id_chapter);
         $viewUpdate = new ViewAdmin();
         $updatePage = $viewUpdate->adminPage('view/updatePage.php', ['chapterElement' => $chapterElement]);
         echo $updatePage;
@@ -60,10 +53,10 @@ class ControllerAdmin
         header('Location: indexAdmin.php');
     }
 
-    public function deleteChapter($chapter)
+    public function deleteChapter($id_chapter)
     {
         $deleteChapter = new ChapterManager();
-        $deleteChapter->deleteChapter($chapter);
+        $deleteChapter->deleteChapter($id_chapter);
         header('Location: indexAdmin.php');
     }
 }

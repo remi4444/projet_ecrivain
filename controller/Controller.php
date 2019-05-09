@@ -7,66 +7,81 @@ class Controller
     {
         $listChapter = new ChapterManager();
         $posts = $listChapter->getChapter();
-       
         $view = new View(); 
         $principalPage = $view->principalPage('view/pagePrincipal.tpl.php', ['posts'=>$posts]);
-        
         echo $principalPage;
     }
 
-    public function chapterPage($chapter_number)
+    public function chapterPage($id)
     {
         $listChapterByNumber = new ChapterManager();
         $listMessage = new MessageManager();
         $countChapter = $listChapterByNumber->countChapter();
         $countNbChapter = $countChapter['nbChapter'];
-        $posts = $listChapterByNumber->getChapterByNumber($chapter_number);
-        $messages = $listMessage->getMessage($chapter_number);
+        $posts = $listChapterByNumber->getChapterById($id);
+        $messages = $listMessage->getMessage($id);
         $view = new View(); 
         $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('posts'=>$posts, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter));
         
         echo $chapterPage;
     }
 
-    public function addMessage($author, $message, $chapter_number)
+    public function addMessage($author, $message, $id)
     {
         $addMessage = new MessageManager();
-		$affectedLines = $addMessage->addMessage($author, $message, $chapter_number);
+		$affectedLines = $addMessage->addMessage($author, $message, $id);
 		if ($affectedLines == false){
 			die("Impossible d'ajouter le commentaire");
         }
-        $this->chapterPage($chapter_number);
+        $this->chapterPage($id);
     }
 
-    public function MessageReporting($id, $chapter)
+    public function MessageReporting($id, $chapter_id)
     {
         $messageReporting = new MessageManager();
         $reportUpdate = $messageReporting->updateReportMessage($id);
-        $this->chapterPage($chapter);
+        $this->chapterPage($chapter_id);
     }
-    public function nextChapter($chapter)
+    public function nextChapter($id)
     {
-        $count = new ChapterManager;
-        $countChapter = $count->countChapter();
-        $countNbChapter = $countChapter['nbChapter'];
-        $nextChapter =  $chapter+1;
-        if($nextChapter > $countNbChapter)
+        if (is_numeric($id))
         {
-            $nextChapter = 1;
+            $chapterManager = new ChapterManager;
+            $idChapters = $chapterManager->getChapterById($id);
+            foreach($idChapters AS $idChapter)
+            {
+                $chapter=  $idChapter->getChapterNumber();
+            }
+            
+            $searchChapterId = $chapterManager->nextChapter($chapter);
+            $id=$searchChapterId['id'];
+            $this->chapterPage($id);
         }
-        $this->chapterPage($nextChapter);
+        else {
+			die("Impossible de voir le prochain chapitre");
+        }
+        
     }
-    public function beforeChapter($chapter)
+    public function beforeChapter($id)
     {
-        $count = new ChapterManager;
-        $countChapter = $count->countChapter();
-        $countNbChapter = $countChapter['nbChapter'];
-        $nextChapter =  $chapter-1;
-        if($nextChapter < 0)
+        if (is_numeric($id))
         {
-            $nextChapter = 1;
+            $chapterManager = new ChapterManager;
+            $idChapters = $chapterManager->getChapterById($id);
+            foreach($idChapters AS $idChapter)
+            {
+                $chapter=  $idChapter->getChapterNumber();
+            }
+            
+            $searchChapterId = $chapterManager->beforeChapter($chapter);
+            $id=$searchChapterId['id'];
+            $this->chapterPage($id);
         }
-        $this->chapterPage($nextChapter);
+        else {
+			die("Impossible de voir le prochain chapitre");
+        }
+        
+        
     }
     
 }

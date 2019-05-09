@@ -9,7 +9,7 @@
                     
                     <h2 id="title">Chapitre <?= $post->getChapterNumber() ?></h2>
                     <p id="font_family_chapter"><?= $post->getTitle()?></p>
-                    <a class="btn btn-link" href="index.php?action=chapterByNumber&amp;chapter_number=<?=$post->getChapterNumber()?>" class="p-2">Lire le chapitre</a>
+                    <a id="link_page_chapter"class="btn btn-link" href="index.php?action=chapterById&amp;id=<?=$post->getId()?>" class="p-2">Lire le chapitre</a>
                 </div>
             <?php }?>
             
