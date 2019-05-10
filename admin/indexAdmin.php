@@ -48,6 +48,11 @@ if(isset($_GET['action'])){
         $controller = new ControllerAdmin();
         $controller->deleteChapter($_GET['id_page']);
     }
+    elseif($_GET['action']== 'updateMessageAdmin')
+    {
+        $controller = new ControllerAdmin();
+        $controller->updateMessage();
+    }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';
     }

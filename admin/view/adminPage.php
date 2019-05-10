@@ -7,7 +7,8 @@
     </nav>
     
     <h2 id="margin_admin"class="text-danger text-center">Zone administatif</h2>
-    <p id="publish"class=" title_admin_info btn-success text-center">Publier un chapitre de votre livre</p> 
+    <p class="responsive_title_size title_admin_info btn-success text-center" ><a id="message_update" href="indexAdmin.php?action=updateMessageAdmin" >Supprimer des messages du forum</a></p>
+    <p id="publish"class=" responsive_title_size title_admin_info btn-success text-center">Publier un chapitre de votre livre</p> 
     <form action="indexAdmin.php?action=publishChapter" method = "post" class="reponsive_width jumbotron ">
             <label class="text-danger">Entrez le numéro de chapitre : </label><input class="width_case size_form_admin" type = "text" name = "chapter_number" ><br>
             <label class="text-danger">Entrez le titre du chapitre : </label><input class="size_form_admin_title" type="text" name="title" value ="titre chapitre">
@@ -15,7 +16,7 @@
             <textarea class="size_textarea_form"name = "text_paragraph" id="text_paragraph">Ecrivez votre texte</textarea><br><br>
             <input type="submit" value ="Envoyer votre texte" class="text-danger"> 
     </form>
-    <p id="update" class="title_admin_info btn-success text-center">Modifier un chapitre </p>
+    <p  id="update" class="responsive_title_size title_admin_info btn-success text-center">Modifier un chapitre </p>
     <?php
     foreach($chapters as $chapter)
         {?>
@@ -30,7 +31,7 @@
 
          <?php } ?>
     
-    <p id="message_report"class="title_admin_info btn-success text-center">Messages signalés : </p>
+    <p id= "message"class=" responsive_title_size title_admin_info btn-success text-center">Messages signalés : </p>
     <?php
     foreach($reportMessage as $report)
             {?> 
@@ -43,10 +44,9 @@
                         
                         <a class="btn btn btn-light" href='indexAdmin.php?action=removeMessageAdmin&amp;id=<?= $report->getId()?>'>Effacer dans l'admin</a>
                         <a class="btn btn-danger" href="indexAdmin.php?action=removeMessage&amp;id=<?= $report->getId() ?>">Effacer dans la base de donnée </a>
-                    </div>
-
-                    
-                    
+                    </div>   
                 </div>
                 <?php }?>
+    
+    
    

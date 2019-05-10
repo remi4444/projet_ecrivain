@@ -25,6 +25,14 @@ class ControllerAdmin
         }
         header('Location: ../index.php');
     }
+    public function updateMessage()
+    {
+        $allMessage = new MessageManager();
+        $updateMessages = $allMessage->getAllMessage();
+        $viewUpdate = new ViewAdmin();
+        $updatePage = $viewUpdate->adminPage('view/updateMessage.php', ['updateMessages' => $updateMessages]);
+        echo $updatePage;
+    }
     public function removeMessage($idMessage)
     {
         $removeMessage = new MessageManager();

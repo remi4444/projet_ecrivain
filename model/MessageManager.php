@@ -70,6 +70,17 @@ class MessageManager extends Manager
 		
 		return $tabResult;
     }
+    public function getAllMessage()
+    {
+        $db = $this->dbConnect();
+	    $req = $db->query('SELECT * FROM message ORDER BY date_creation');
+		$tabResult = array();
+		while($data = $req->fetch()){
+			$tabResult[] = new MessageObject($data);
+		}
+		
+		return $tabResult;
+    }
 
     public function removeMessage($id)
     {
