@@ -16,7 +16,7 @@ class MessageManager extends Manager
     public function getMessageByIdChapter($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM message   WHERE id_chapter = ?');
+        $req = $db->prepare('SELECT * FROM message  WHERE id_chapter = ?');
         $req->execute(array($id));
 		$tabResult = array();
 		while($data = $req->fetch()){

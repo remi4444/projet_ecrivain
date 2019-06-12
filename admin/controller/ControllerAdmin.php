@@ -1,11 +1,11 @@
 <?php
 
-
+include_once('../config/config.php');
 
 class ControllerAdmin
 {
 
-    public function connexionAdmin()
+    public function connexionAdmin($errorConnexion='')
     {
         session_start();
         if(isset($_SESSION['name']))
@@ -21,7 +21,7 @@ class ControllerAdmin
         else 
         {
             $viewAdmin = new ViewAdmin;
-            $connexionPage = $viewAdmin->adminPage('view/connexion.php');  
+            $connexionPage = $viewAdmin->adminPage('view/connexion.php',array('errorConnexion' => $errorConnexion));  
             echo $connexionPage;
         }
             
@@ -29,10 +29,10 @@ class ControllerAdmin
     }
     public function adminPage()
     {
-        $password = '$2y$10$ff4O7fTP/EYT6MbnbMuTJ.d9RDuPES1n396Pwtv4u0ExWkKooBAni';
+        
         $passwordHash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
     
-        $isPasswordCorrect = password_verify($_POST['pass'], $password);
+        $isPasswordCorrect = password_verify($_POST['pass'], ADMIN_PASSWORD);
         if($isPasswordCorrect) 
         {
             session_start();
@@ -48,7 +48,8 @@ class ControllerAdmin
         }
         else 
         {
-            echo "Vous n'avez pas rentré le bon mot de passe ou login";
+            $errorMessage = 'Vos identifiants ne sont pas valides';
+            $this->connexionAdmin($errorMessage);
         }
         
     }

@@ -41,20 +41,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'addMessage')
     {
         $controller = new Controller();
-        if(preg_match("#^ +$#", $_POST['message']) || preg_match("#^ +$#", $_POST['author']))
-        {
-            echo ('Votre message ou pseudonyme ne peut pas comporter que des espaces');
-        }
-        
-        elseif(empty($_POST['message']) || empty($_POST['author']))
-        {
-            echo ('Les champs ne sont pas renseignés');
-        }
-        else
-        {
-            $controller->addMessage(htmlspecialchars($_POST['author']),htmlspecialchars($_POST['message']), $_GET['chapter_id']);
-        }
-        
+        $controller->addMessage(htmlspecialchars($_POST['author']),htmlspecialchars($_POST['message']), $_GET['chapter_id']);  
     }
     elseif($_GET['action']== 'nextChapter')
     {

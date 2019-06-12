@@ -48,7 +48,9 @@
                 </div>
                 
             <?php }?>
+                
                 <p class="container text-center alert alert-info" id="form_forum">Envoyer un message : </p>
+                <p class="text-center text-danger"> <?php if(!empty($errorMessage)){ echo $errorMessage; }?></p>
                 <form id="form_width" class=" alert alert-info text-center container" action="index.php?action=addMessage&amp;chapter_id=<?=$chapter->getId()?>" method="post">
                     <label for="author">Pseudo : </label><input class="form_input_width" type="text" name="author" id="author"/><br/>
                     <label for="message">Message : </label>

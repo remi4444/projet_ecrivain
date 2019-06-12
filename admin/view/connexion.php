@@ -13,4 +13,7 @@
         <button type="submit" class="btn btn-primary">Connexion à l'admin</button>
     
 </form>
+<br>
+<br>
+<p class="text-center text-danger"><?php if(!empty($errorConnexion)){ echo $errorConnexion; }?></p>
 

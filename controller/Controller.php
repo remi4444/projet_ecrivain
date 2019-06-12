@@ -12,7 +12,7 @@ class Controller
         echo $principalPage;
     }
 
-    public function chapterPage($id)
+    public function chapterPage($id, $errorMessage='')
     {
         $listChapterByNumber = new ChapterManager();
         $listMessage = new MessageManager();
@@ -21,19 +21,31 @@ class Controller
         $chapter = $listChapterByNumber->getChapterById($id);
         $messages = $listMessage->getMessageByIdChapter($id);
         $view = new View(); 
-        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('chapter'=>$chapter, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter));
+        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('chapter'=>$chapter, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter, 'errorMessage' => $errorMessage));
         
         echo $chapterPage;
     }
 
     public function addMessage($author, $message, $id)
     {
-        $addMessage = new MessageManager();
-		$affectedLines = $addMessage->addMessage($author, $message, $id);
-		if ($affectedLines == false){
-			die("Impossible d'ajouter le commentaire");
+        
+        $errorMessage = '';
+        $author = trim($author);
+        $message = trim($message);
+        if(empty($author) || empty($message))
+        {
+            $errorMessage = 'Votre pseudonyme ou message ne peut pas être vide';
         }
-        $this->chapterPage($id);
+        else
+        {
+            $addMessage = new MessageManager();
+            $affectedLines = $addMessage->addMessage($author, $message, $id);
+            if ($affectedLines == false){
+			    die("Impossible d'ajouter le commentaire");
+            }
+        }
+        
+        $this->chapterPage($id, $errorMessage);
     }
 
     public function MessageReporting($id, $chapter_id)
