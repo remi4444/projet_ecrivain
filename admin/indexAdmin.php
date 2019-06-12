@@ -3,13 +3,19 @@ function chargeClass($classe)
 {
     if(file_exists('../model/' .$classe.'.php'))
     {
-        require_once('../model/' .$classe.'.php');
+        require('../model/' .$classe.'.php');
     }
-    else
+    elseif(file_exists('../utils/' .$classe.'.php'))
     {
-        require_once('../utils/Debug.php');
-        require_once('controller/ControllerAdmin.php');
-        require_once('view/ViewAdmin.php');
+        require('../utils/' .$classe.'.php');
+    }
+    elseif(file_exists('controller/' .$classe. '.php'))
+    {
+        require('controller/' .$classe.'.php');
+    }
+    elseif(file_exists('view/' .$classe. '.php'))
+    {
+        require('view/' .$classe. '.php');
     }
 }
 spl_autoload_register('chargeClass');
@@ -20,7 +26,7 @@ if(isset($_GET['action'])){
     {
         
         $controller = new ControllerAdmin();
-		$controller->addNovelChapter($_POST['text_paragraph'], $_POST['title'], $_POST['chapter_number']);
+		$controller->addNovelChapter($_POST['text_paragraph'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['chapter_number']));
     }
 
     elseif($_GET['action']== 'removeMessageAdmin')
@@ -36,12 +42,12 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'searchText')
     {
         $controller= new ControllerAdmin();
-        $controller->searchText($_GET['id_page']);
+        $controller->updateChapterPage($_GET['id_page']);
     }
     elseif($_GET['action']== 'updateChapter')
     {
         $controller = new ControllerAdmin();
-        $controller->updateChapter($_POST['chapter_number'], $_POST['title'], $_POST['text_paragraph'], $_GET['id']);
+        $controller->updateChapter(htmlspecialchars($_POST['chapter_number']), htmlspecialchars($_POST['title']), $_POST['text_paragraph'], $_GET['id']);
     }
     elseif($_GET['action']== 'deleteChapter')
     {
@@ -53,15 +59,31 @@ if(isset($_GET['action'])){
         $controller = new ControllerAdmin();
         $controller->updateMessage();
     }
+
+    elseif($_GET['action']== 'adminPage')
+    {
+        $controllerAdmin = new ControllerAdmin();
+        $controllerAdmin->adminPage();
+    }
+
+    elseif($_GET['action']== 'deconnexion')
+    {
+        $controllerAdmin = new ControllerAdmin();
+        $controllerAdmin->deconnexion();
+        
+    }
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';
     }
+
+    
 }
-else 
+else
 {
     $controllerAdmin = new ControllerAdmin();
-    $controllerAdmin->adminPage();
+    $controllerAdmin->connexionAdmin();
 }
+
 
  
  

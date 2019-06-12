@@ -4,16 +4,53 @@
 
 class ControllerAdmin
 {
+
+    public function connexionAdmin()
+    {
+        session_start();
+        if(isset($_SESSION['name']))
+        {
+            $searchMessageReport = new MessageManager();
+            $reportMessage = $searchMessageReport->getReportsMessages();
+            $searchChapter = new ChapterManager();
+            $chapters = $searchChapter->getChapter();
+            $viewAdmin = new ViewAdmin;
+            $adminPage = $viewAdmin->adminPage('view/adminPage.php',array('reportMessage'=>$reportMessage, 'chapters'=>$chapters));  
+            echo $adminPage;
+        }
+        else 
+        {
+            $viewAdmin = new ViewAdmin;
+            $connexionPage = $viewAdmin->adminPage('view/connexion.php');  
+            echo $connexionPage;
+        }
+            
+        
+    }
     public function adminPage()
     {
+        $password = '$2y$10$ff4O7fTP/EYT6MbnbMuTJ.d9RDuPES1n396Pwtv4u0ExWkKooBAni';
+        $passwordHash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+    
+        $isPasswordCorrect = password_verify($_POST['pass'], $password);
+        if($isPasswordCorrect) 
+        {
+            session_start();
+            $_SESSION['name'] = 'Jean Forteroche';
+            
+            $searchMessageReport = new MessageManager();
+            $reportMessage = $searchMessageReport->getReportsMessages();
+            $searchChapter = new ChapterManager();
+            $chapters = $searchChapter->getChapter();
+            $viewAdmin = new ViewAdmin;
+            $adminPage = $viewAdmin->adminPage('view/adminPage.php',array('reportMessage'=>$reportMessage, 'chapters'=>$chapters));  
+            echo $adminPage;
+        }
+        else 
+        {
+            echo "Vous n'avez pas rentré le bon mot de passe ou login";
+        }
         
-        $searchMessageReport = new MessageManager();
-        $reportMessage = $searchMessageReport->getReportsMessages();
-        $searchChapter = new ChapterManager();
-        $chapters = $searchChapter->getChapter();
-        $viewAdmin = new ViewAdmin;
-        $adminPage = $viewAdmin->adminPage('view/adminPage.php',array('reportMessage'=>$reportMessage, 'chapters'=>$chapters));  
-        echo $adminPage;
     }
 
     public function addNovelChapter($textParagraph, $title, $number_chapter)
@@ -45,7 +82,7 @@ class ControllerAdmin
         $removeMessageInAdmin->removeMessageInadmin($id);
         header('Location: indexAdmin.php');
     }
-    public function searchText($id_chapter)
+    public function updateChapterPage($id_chapter)
     {
         $updateText = new ChapterManager();
         $chapterElement = $updateText->getChapterById($id_chapter);
@@ -66,6 +103,17 @@ class ControllerAdmin
         $deleteChapter = new ChapterManager();
         $deleteChapter->deleteChapter($id_chapter);
         header('Location: indexAdmin.php');
+    }
+    public function deconnexion()
+    {
+        
+        session_start();
+
+        // Suppression des variables de session et de la session
+        $_SESSION = array();
+        session_destroy();
+        header('Location: ../index.php');
+        
     }
 }
 

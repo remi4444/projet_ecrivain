@@ -13,7 +13,7 @@ class MessageManager extends Manager
 		return $affectedLines;
     }
 
-    public function getMessage($id)
+    public function getMessageByIdChapter($id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM message   WHERE id_chapter = ?');
@@ -33,32 +33,7 @@ class MessageManager extends Manager
         $req->execute(array($id));
         return $req;
     }
-    /*public function getMessageReport($id)
-    {
-        $db = $this->dbConnect();
-		$req = $db->prepare('SELECT * FROM message WHERE id =?');
-        $req->execute(array($id));
-        $data = $req->fetch();
-		
-		return $data;
-    }
     
-    public function insertMessageReport($message)
-    {
-        $db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO message_report(id_message, name, comment, chapter_message, date_creation) VALUES(:id_message, :name, :comment, :chapter_message, :date_creation)');
-
-		$affectedLines = $req->execute(array(
-            'id_message' => $message['id'],
-            'name' => $message['name'],
-            'comment' => $message['comment'],
-            'chapter_message' => $message['chapter_message'],
-            'date_creation' => $message['date_creation']
-        ));
-
-		return $affectedLines;
-    }*/
-
     public function getReportsMessages()
     {
         $db = $this->dbConnect();
@@ -99,14 +74,5 @@ class MessageManager extends Manager
         $req->execute(array($id));
         return $req;
     }
-    /*
-    public function removeMessageAdminReport($idMessage)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('DELETE FROM message_report WHERE id_message = ?');
-        $req->execute(array($idMessage));
-
-        return $req;
-    }*/
-		
+    
 }

@@ -56,7 +56,7 @@ form
 
 
 
-#title
+.title
 {
   font-size: 30px;
   border-radius: 50%;
@@ -73,7 +73,7 @@ form
   flex-wrap: wrap;
   
 }
-#chapter_size
+.chapter_size
 {
   
   width: 30%;
@@ -84,12 +84,12 @@ form
   position : relative;
 }
 
-#chapter_size:hover 
+.chapter_size:hover 
 {
   background-color: rgb(181, 52, 63);
 }
 
-#font_family_chapter
+.font_family_chapter
 {
   font-family : fantasy;
   font-size: 30px;
@@ -205,7 +205,7 @@ form
   color : white;
 }
 
-#link_page_chapter
+.link_page_chapter
 {
   position : absolute;
   bottom : 10px;
@@ -241,7 +241,12 @@ form
   color : white;
   
 }
-@media screen and (max-width: 1280px)
+#form_login
+{
+  width: 30%;
+  margin-top: 30px;
+}
+@media screen and (max-width: 1024px)
 {
     body
     {
@@ -263,7 +268,7 @@ form
       margin-top: 20px;
       margin-left : 35%;
     }
-    #chapter_size
+    .chapter_size
     {
       
       width: 80%;
@@ -275,14 +280,14 @@ form
       position : relative;
     }
 
-    #font_family_chapter
+    .font_family_chapter
     {
       font-family : fantasy;
       font-size: 20px;
       color : white;
       
     }
-    #link_page_chapter
+    .link_page_chapter
     {
       position : static;
       bottom : 10px;
@@ -359,10 +364,7 @@ form
       height: 30px;
       width: 10%;
     }
-    #update
-    {
-      
-    }
+    
     #nb_chapter_modify
     {
       font-size : 20px;
@@ -384,5 +386,18 @@ form
       width : 90%;
       font-size: 15px;
       height: 25px;
+    }
+    #form_login
+    {
+      width: 70%;
+      margin-top: 30px;
+    }
+    #login
+    {
+      height: 50px;
+    }
+    #pwd
+    {
+      height: 50px;
     }
 }

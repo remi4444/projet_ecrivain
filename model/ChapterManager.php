@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class ChapterManager extends Manager
 {
 	public function getChapter()
@@ -23,12 +20,8 @@ class ChapterManager extends Manager
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT * FROM chapter WHERE id =?');
 		$req->execute(array($id));
-		$tabResult = array();
-		while($data = $req->fetch()){
-			$tabResult[] = new ChapterObject($data);
-		}
-		
-		return $tabResult;
+		$data = $req->fetch();
+		return new ChapterObject($data);
 	}
 	
 	public function addParagraphChapter($textParagraph, $title, $number_chapter)
@@ -69,20 +62,20 @@ class ChapterManager extends Manager
 		$req->execute(array($id_chapter));
 	}
 
-	public function nextChapter($chapter)
+	public function getNextChapterId($chapterNumber)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id FROM chapter WHERE chapter_number > ?');
-		$req->execute(array($chapter));
+		$req = $db->prepare('SELECT id FROM chapter WHERE chapter_number > ? ORDER BY chapter_number ASC LIMIT 1' );
+		$req->execute(array($chapterNumber));
 		$data = $req->fetch();
-		return $data;
+		return $data['id'];
 	}
-	public function beforeChapter($chapter)
+	public function getBeforeChapterId($chapterNumber)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id FROM chapter  WHERE chapter_number < ? ');
-		$req->execute(array($chapter));
+		$req = $db->prepare('SELECT id FROM chapter  WHERE chapter_number < ? ORDER BY chapter_number DESC LIMIT 1');
+		$req->execute(array($chapterNumber));
 		$data = $req->fetch();
-		return $data;
+		return $data['id'];
 	}
 }	

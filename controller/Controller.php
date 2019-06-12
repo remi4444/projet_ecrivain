@@ -18,10 +18,10 @@ class Controller
         $listMessage = new MessageManager();
         $countChapter = $listChapterByNumber->countChapter();
         $countNbChapter = $countChapter['nbChapter'];
-        $posts = $listChapterByNumber->getChapterById($id);
-        $messages = $listMessage->getMessage($id);
+        $chapter = $listChapterByNumber->getChapterById($id);
+        $messages = $listMessage->getMessageByIdChapter($id);
         $view = new View(); 
-        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('posts'=>$posts, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter));
+        $chapterPage = $view->principalPage('view/chapterPage.tpl.php', array('chapter'=>$chapter, 'messages'=>$messages, 'countNbChapter'=>$countNbChapter));
         
         echo $chapterPage;
     }
@@ -47,15 +47,9 @@ class Controller
         if (is_numeric($id))
         {
             $chapterManager = new ChapterManager;
-            $idChapters = $chapterManager->getChapterById($id);
-            foreach($idChapters AS $idChapter)
-            {
-                $chapter=  $idChapter->getChapterNumber();
-            }
-            
-            $searchChapterId = $chapterManager->nextChapter($chapter);
-            $id=$searchChapterId['id'];
-            $this->chapterPage($id);
+            $chapter = $chapterManager->getChapterById($id);
+            $idNextChapter = $chapterManager->getNextChapterId($chapter->getChapterNumber());
+            $this->chapterPage($idNextChapter);
         }
         else {
 			die("Impossible de voir le prochain chapitre");
@@ -67,15 +61,9 @@ class Controller
         if (is_numeric($id))
         {
             $chapterManager = new ChapterManager;
-            $idChapters = $chapterManager->getChapterById($id);
-            foreach($idChapters AS $idChapter)
-            {
-                $chapter=  $idChapter->getChapterNumber();
-            }
-            
-            $searchChapterId = $chapterManager->beforeChapter($chapter);
-            $id=$searchChapterId['id'];
-            $this->chapterPage($id);
+            $chapter = $chapterManager->getChapterById($id);
+            $idBeforeChapter = $chapterManager->getBeforeChapterId($chapter->getChapterNumber());
+            $this->chapterPage($idBeforeChapter);
         }
         else {
 			die("Impossible de voir le prochain chapitre");

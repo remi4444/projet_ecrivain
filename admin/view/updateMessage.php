@@ -1,4 +1,4 @@
-<p class="title_admin_info btn-success text-center">Supprimer un message du forum</p>
+<p class="responsive_title_size btn-success text-center">Supprimer un message du forum</p>
 
 <?php
 foreach($updateMessages as $updateMessage)

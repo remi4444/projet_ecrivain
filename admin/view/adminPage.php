@@ -1,12 +1,15 @@
-
+    
+    
+        
     <nav class="d-flex  justify-content-around " id="flex_nav">
         <a href="../index.php" class="link_admin btn btn-danger">Retour à la page principale</a>
         <a href="#publish" class="link_admin btn btn-danger">Publier un chapitre</a>
         <a href="#update" class="link_admin btn btn-danger">Modifier un chapitre</a>
         <a href="#message" class="link_admin btn btn-danger">Message signalé</a>
+        <a href='indexAdmin.php?action=deconnexion' class="link_admin btn btn-danger">Déconnexion</a>
     </nav>
     
-    <h2 id="margin_admin"class="text-danger text-center">Zone administatif</h2>
+    <h2 id="margin_admin"class="text-danger text-center">Zone administatif de <?= $_SESSION['name'] ?></h2>
     <p class="responsive_title_size title_admin_info btn-success text-center" ><a id="message_update" href="indexAdmin.php?action=updateMessageAdmin" >Supprimer des messages du forum</a></p>
     <p id="publish"class=" responsive_title_size title_admin_info btn-success text-center">Publier un chapitre de votre livre</p> 
     <form action="indexAdmin.php?action=publishChapter" method = "post" class="reponsive_width jumbotron ">
@@ -46,7 +49,10 @@
                         <a class="btn btn-danger" href="indexAdmin.php?action=removeMessage&amp;id=<?= $report->getId() ?>">Effacer dans la base de donnée </a>
                     </div>   
                 </div>
-                <?php }?>
+                <?php } ?>
+    
+     
     
     
-   
+    
+    

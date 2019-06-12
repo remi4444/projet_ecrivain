@@ -1,19 +1,24 @@
 
 <?php
+
 function chargerClasseModel($classe)
 {
     if(file_exists('model/' .$classe.'.php'))
     {
-        require_once('model/' .$classe.'.php');
+        require('model/' .$classe.'.php');
     }
-    else
+    elseif(file_exists('utils/' .$classe.'.php'))
     {
-        require_once('utils/Debug.php');
-        require_once('view/View.php');
-        require_once('controller/Controller.php');
-        require_once('view/View.php');
+        require('utils/' .$classe.'.php');
     }
-  
+    elseif(file_exists('controller/' .$classe. '.php'))
+    {
+        require('controller/' .$classe.'.php');
+    }
+    elseif(file_exists('view/' .$classe. '.php'))
+    {
+        require('view/' .$classe. '.php');
+    }
 }
 
 spl_autoload_register('chargerClasseModel'); 
@@ -36,7 +41,20 @@ if(isset($_GET['action'])){
     elseif($_GET['action']== 'addMessage')
     {
         $controller = new Controller();
-        $controller->addMessage($_POST['author'],$_POST['message'], $_GET['chapter_id']);
+        if(preg_match("#^ +$#", $_POST['message']) || preg_match("#^ +$#", $_POST['author']))
+        {
+            echo ('Votre message ou pseudonyme ne peut pas comporter que des espaces');
+        }
+        
+        elseif(empty($_POST['message']) || empty($_POST['author']))
+        {
+            echo ('Les champs ne sont pas renseignés');
+        }
+        else
+        {
+            $controller->addMessage(htmlspecialchars($_POST['author']),htmlspecialchars($_POST['message']), $_GET['chapter_id']);
+        }
+        
     }
     elseif($_GET['action']== 'nextChapter')
     {
@@ -48,6 +66,7 @@ if(isset($_GET['action'])){
         $controller = new Controller();
         $controller->beforeChapter($_GET['id']);
     }
+    
 	else {
 		echo 'Erreur tous les champs ne sont pas remplis';
     }
